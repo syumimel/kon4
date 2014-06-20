@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!-- saved from url=(0215)http://kesin.hatenablog.com/entry/2013/08/27/Web%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AB%E9%AB%98%E6%A9%9F%E8%83%BD%E3%81%AA%E9%9F%B3%E5%A3%B0%E8%AA%8D%E8%AD%98%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8BWeb_Speech_API -->
+<html lang="ja" data-avail-langs="ja en" data-page="entry" data-admin-domain="http://blog.hatena.ne.jp" data-static-domain="http://hatenablog.com" data-blog="kesin.hatenablog.com" data-blogs-uri-base="http://kesin.hatenablog.com" data-globalheader-color="b" data-globalheader-type="pc" data-author="Kesin" data-version="de41de6dec1a8b612c3ef150b5fd8ef6" data-blog-comments-top-is-new="" data-brand="hatenablog" data-has-touch-view="1" itemscope="" itemtype="http://schema.org/Article"><head prefix="og: http://ogp.me/ns# fb: http://ogp.me/fb# article: http://ogp.me/fb/article#"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script async="" src="./lib/notices.count.json"></script>
+    
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7; IE=9; IE=10">
+    <title>Webアプリに高機能な音声認識を追加するWeb Speech API - Kesin's diary</title>
+
+    
+
+    
+      <link rel="canonical" href="./lib/Webアプリに高機能な音声認識を追加するWeb Speech API - Kesin's diary.htm">
+    
+
+    <meta itemprop="name" content="Webアプリに高機能な音声認識を追加するWeb Speech API - Kesin&#39;s diary">
+    
+      <meta itemprop="image" content="http://cdn-ak.f.st-hatena.com/images/fotolife/K/Kesin/20130827/20130827215613.jpg">
+    
+
+    <meta property="og:title" content="Webアプリに高機能な音声認識を追加するWeb Speech API - Kesin&#39;s diary">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="http://kesin.hatenablog.com/entry/2013/08/27/Web%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AB%E9%AB%98%E6%A9%9F%E8%83%BD%E3%81%AA%E9%9F%B3%E5%A3%B0%E8%AA%8D%E8%AD%98%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8BWeb_Speech_API">
+    
+      <meta property="og:image" content="http://cdn-ak.f.st-hatena.com/images/fotolife/K/Kesin/20130827/20130827215613.jpg">
+    
+      <meta property="og:description" content=" Microphone&#39; by Juan_Alvaro, http://www.flickr.com/photos/31590610@N03/5408706936/ CC by 2.0 最近、にわかに音声認識というものが盛り上がっています。 スマートフォンに搭載されている、AppleのSiri、NTTドコモのしゃべってコンシェル、Googleの音声検索あたりが有名ですが、お掃除ロボやエアコン、カーナビといった家電にも音声認識機能が搭載されるようになってきました。 認識の精度や意識の問題（人前で機械に話しかけるのはちょっと恥ずかしい）などの課題はありますが、音声認識はアプリや家電のUIの一部とし…">
+    <meta property="og:site_name" content="http://kesin.hatenablog.com/">
+      <meta property="article:published_time" content="1377609751">
+        <meta property="article:author" content="100002137382778">
+        <meta property="article:tag" content="API">    <meta name="twitter:card" content="summary">      <meta name="twitter:app:name:iphone" content="はてなブログアプリ">
+      <meta name="twitter:app:id:iphone" content="583299321">
+      <meta name="twitter:app:url:iphone" content="hatenablog:///open?uri=http%3A%2F%2Fkesin.hatenablog.com%2Fentry%2F2013%2F08%2F27%2FWeb%25E3%2582%25A2%25E3%2583%2597%25E3%2583%25AA%25E3%2581%25AB%25E9%25AB%2598%25E6%25A9%259F%25E8%2583%25BD%25E3%2581%25AA%25E9%259F%25B3%25E5%25A3%25B0%25E8%25AA%258D%25E8%25AD%2598%25E3%2582%2592%25E8%25BF%25BD%25E5%258A%25A0%25E3%2581%2599%25E3%2582%258BWeb_Speech_API">      <meta name="twitter:site" content="@Kesin11">        <meta name="keywords" content="Python NumPy iOS">      <meta name="description" content=" Microphone&#39; by Juan_Alvaro, http://www.flickr.com/photos/31590610@N03/5408706936/ CC by 2.0 最近、にわかに音声認識というものが盛り上がっています。 スマートフォンに搭載されている、AppleのSiri、NTTドコモのしゃべって…">
+    
+<script type="text/javascript" async="" src="./lib/ga.js"></script><script src="./lib/cb=gapi.loaded_0" async=""></script><script async="" type="text/javascript" src="./lib/gpt.js"></script><script type="text/javascript">
+// <!--
+
+if (~navigator.userAgent.indexOf('Mac OS X')) {
+  document.write('<style type="text/css">html, body { font-family: \x27Helvetica\x27, \x27Arial\x27, \x27ヒラギノ角ゴ Pro W3\x27, \x27Hiragino Kaku Gothic Pro\x27, sans-serif; } </style>');
+} else {
+  document.write('<style type="text/css">html, body { font-family: \x27Helvetica\x27, \x27Arial\x27, \x27メイリオ\x27, \x27Meiryo\x27, \x27MS PGothic\x27, sans-serif; } </style>');
+}
+
+// -->
+</script>
+<script>
+function speak(){
+    chrome.tts.speak('Hello, world.');
+}
+</script>
+
+<style type="text/css">html, body { font-family: 'Helvetica', 'Arial', 'メイリオ', 'Meiryo', 'MS PGothic', sans-serif; } </style>
+
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript" src="/js/excanvas.min.js"></script>
+<![endif]-->
+
+    <link rel="shortcut icon" href="http://hatenablog.com/images/favicon.ico">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://kesin.hatenablog.com/feed">
+    <link rel="alternate" type="application/rss+xml" title="RSS2.0" href="http://kesin.hatenablog.com/rss">
+    <link rel="author" href="http://www.hatena.ne.jp/Kesin/">
+      <link rel="stylesheet" type="text/css" href="./lib/globalheader.css">
+    
+      <link rel="stylesheet" type="text/css" href="./lib/18320ed3b9b390b0d8178ce912932285835a8da8">
+    
+   
+    <style>
+      div#google_afc_user,
+      div#google_afc_user_container,
+      div.google_afc_image,
+      div.google_afc_blocklink {
+          display: block !important;
+      }
+    </style>
+  <link rel="stylesheet" type="text/css" href="./lib/widget-hatenadiary.css"><script defer="" type="text/javascript" charset="utf-8" src="./lib/json"></script><script async="" type="text/javascript" src="./lib/pubads_impl_32.js"></script><script type="text/javascript" src="./lib/osd.js"></script><script src="./lib/entries.json" type="text/javascript"></script></head>
+
+  <body class="page-entry    big-star" data-twttr-rendered="true">
+    <div id="container">
+      <div id="container-inner">
+
+<div id="content" class="hfeed">
+  <div id="content-inner">
+    <div id="wrapper">
+      <div id="main">
+        <div id="main-inner">
+              
+                <article class="hentry entry js-entry-article date-first autopagerize_page_element chars-800 words-100 markdown entry-odd" id="entry-11696248318757107863" data-keyword-campaign="" data-uuid="11696248318757107863">
+  <div class="entry-inner">
+    <div class="entry-content">
+
+
+
+
+
+<script>
+    function speechInput(event){
+        alert(event.results[0].utterance);
+    }
+
+function sp2() {
+var audio = new Audio(); 
+audio.src ='http://translate.google.com/translate_tts?tl=en&q=Hello'; 
+//audio.src ='http://GoogleTTSx.htm?tl=en&q=Hello'; 
+audio.play();
+}
+function sp3() {
+var audio = new Audio(); 
+//audio.src ='http://translate.google.com/translate_tts?tl=en&q=Hello'; 
+  audio.src ='http://GoogleTTSx.htm?tl=en&q=Hello'; 
+audio.play();
+}
+
+function processspeech() {
+var speechtext=$("#speech").val(); var elem = document.getElementById("test"); 
+elem.value = speechtext; var notification="\"<span style=\"color:#F00; text-transform:uppercase;\">"+ speechtext + "</span>\" <br />*Is this what you said???"; 
+notify(notification); 
+} 
+ 
+
+//【指定言語】tl=　日本語:ja 英語:en スペイン語:es イタリア語:it フランス語:fr ドイツ語:de ロシア語:ru
+//          　   　 ｵﾗﾝﾀﾞ語:nl　ｷﾞﾘｼｬ語:el　ﾎﾟﾙﾄｶﾞﾙ語:pt　ﾎﾟｰﾗﾝﾄﾞ語:pl　中国語:zh-CN　韓国語:ko
+//【メッセージ】q=
+function sp() {
+
+//var e3 = document.getElementById ('recognizedText3');
+
+var mes1=document.input01.txtb.value;
+
+   var language = "ja";
+   var language1 = "en";
+   var message1 = "こんにちは。いつも、しせつ研究所ネオテックラボをご利用いただきありがとうございます。私はGoogleテキストツースピーチの日本語女性アナウンサーです。よろしくね";
+   var message2 = "今週の週間目標は３つあります。１、週間予定を立てる。２、進捗状況を報告する。３、今月の予定を確認する。以上の３つです。";
+   var message =mes1;
+   var message3 ="今日の進捗状況を教えてもらってもいいですか？";
+   
+   var double = "no"; //★"yes"あるいは"no"
+   var number = (new Date().getTime()).toString(); //【イメージ・リフレッシュ用】
+   var base = document.getElementById("GoogleTTS");
+   var Obj = document.createElement('iframe');
+   Obj.setAttribute('border','0');
+   Obj.style.width = '300px';
+   Obj.style.height = '1px';
+   Obj.src = "GoogleTTSx.htm?tl=" + language + "&q=" + message + "&double=" + double +"&dummy=" + number;
+   base.appendChild(Obj);
+}
+
+</script>
+<h3>デモ</h3>
+
+   
+<h3>デモ41</h3>
+<div class="blueBox">
+<form name="input01">
+<input type="button" value="音声認識開始" onclick="recognition3.start();">
+<input type="button" value="音声認識終了" onclick="recognition3.stop();">
+<input type="text" name="txtb" value="">
+<input type="button" value="スピーチ" onclick="sp();">
+<input type="button" value="スピーチ2" onclick="sp2();">
+<input type="button" value="スピーチ3" onclick="sp3();">
+<input id="speech" type="text" speech="speech" x-webkit-speech="x-webkit-speech" onspeechchange="processspeech();" onwebkitspeechchange="processspeech();" /> 
+<textarea id="test"></textarea> 
+</form >
+<div id="GoogleTTS" name="GoogleTTS" style="visibility:hidden;"></div>
+
+
+<div id="state3">停止中</div>
+<div id="recognizedText3"></div>
+<hr>
+<textarea name="kanso2" rows="10" cols="140" id="recognizedText33"></textarea>
+<hr>
+</div>
+
+<script>
+var recognition3 = new webkitSpeechRecognition();
+recognition3.lang = "ja-JP";
+//recognition3.lang = "en";
+
+
+recognition3.interimResults = true;
+recognition3.continuous = true;
+
+var e1 = document.getElementById ('recognizedText33');
+
+recognition3.onsoundstart = function(){
+    $("#state3").text("認識中");
+};
+recognition3.onnomatch = function(){
+    $("#recognizedText3").text("もう一度試してください");
+};
+recognition3.onerror= function(){
+    $("#recognizedText3").text("エラー");
+};
+recognition3.onsoundend = function(){
+    $("#state3").text("停止中");
+};
+
+recognition3.onresult = function(event){
+    var results = event.results;
+    var fl=0;
+    var ans2='';
+    for (var i = event.resultIndex; i<results.length; i++){
+
+         var  ans=results[i][0].transcript;
+        
+        if(results[i].isFinal){
+            $("#recognizedText3").text(ans);
+            fl=1;
+        ans2=ans;
+        }
+        else{
+            $("#recognizedText3").text(ans);
+        
+        }
+        
+    }
+    if(fl==1){
+    e1.value = e1.value+ans2+'\n';
+    e1.scrollTop = e1.scrollHeight;
+    document.input01.txtb.value=ans2;
+    
+    sp();
+    }
+
+
+};
+</script>
+    </div>
+          
+        </div>
+      </div>
+
+      
+
+    </div><!-- #wrapper -->
+  </div>
+</div>
+        
+      </div>
+    </div>
+    
+      <script src="./lib/HatenaStar.js"></script>
+    
+
+    <script type="text/javascript" src="./lib/widgets.js"></script>
+<script type="text/javascript" src="./lib/plusone.js" gapi_processed="true">
+  {"parsetags": "explicit"}
+</script>
+<script type="text/javascript" src="./lib/bookmark_button.js" charset="utf-8" async="async"></script>
+
+
+<script type="text/javascript" src="./lib/js"></script>
+
+<script type="text/javascript" src="./lib/texts-ja.js"></script>
+
+
+  <script type="text/javascript">Hatena.Diary.loadGlobalHeader()</script>
+
+
+
+
+
+    
+        <script id="google-analytics-script" type="text/javascript">
+var _gaq = _gaq || [];
+
+(function($){
+
+  // 現在のドメイン
+  
+    var current_domain = "hatenablog.com".split(":")[0];
+  
+
+  
+    _gaq.push(['_setAccount', 'UA-21841794-1']);
+    _gaq.push(['_trackPageview']);
+  
+
+  
+
+  
+    _gaq.push(['a._setAccount', 'UA-29716941-5']);
+    _gaq.push(['a._setDomainName', current_domain]);
+    _gaq.push(['a._setCustomVar', 1, 'PageId', document.documentElement.getAttribute('data-page'), 3 /* page-level */]);
+      var keywordCampaigns = [];
+      $('.js-entry-article').each(function (index, element) {
+        var keywords = $(element).data('keywordCampaign').split(' ');
+        keywords = _.filter(keywords, function (keyword) { return keyword.length > 0 });
+        keywordCampaigns = keywordCampaigns.concat(keywords);
+      });
+      if (keywordCampaigns.length > 0) {
+        _gaq.push(['a._setCustomVar', 3, 'KeywordCampaign', keywordCampaigns[0], 3 /* page-level */]);
+      }
+      _gaq.push(['a._trackPageview']);
+  
+    _gaq.push(['b._setAccount', 'UA-29716941-2']);
+    _gaq.push(['b._setDomainName', current_domain]);
+    _gaq.push(['b._setCustomVar', 1, 'PageId', document.documentElement.getAttribute('data-page'), 3 /* page-level */]);
+      var keywordCampaigns = [];
+      $('.js-entry-article').each(function (index, element) {
+        var keywords = $(element).data('keywordCampaign').split(' ');
+        keywords = _.filter(keywords, function (keyword) { return keyword.length > 0 });
+        keywordCampaigns = keywordCampaigns.concat(keywords);
+      });
+      if (keywordCampaigns.length > 0) {
+        _gaq.push(['b._setCustomVar', 3, 'KeywordCampaign', keywordCampaigns[0], 3 /* page-level */]);
+      }
+      _gaq.push(['b._trackPageview']);
+  
+
+  $(function () {
+      $(document).delegate('[data-track-event="click"]', 'click', function () {
+          
+          _gaq.push([ 'a._trackEvent', 'Blogs', 'Click', this.getAttribute('data-track-key') ]);
+          
+          _gaq.push([ 'b._trackEvent', 'Blogs', 'Click', this.getAttribute('data-track-key') ]);
+          
+      });
+  });
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  var available_domains = ["blog.hatena.ne.jp"];
+  
+    available_domains.push("hatenablog.com".split(":")[0]);
+  
+    available_domains.push("hatenablog.jp".split(":")[0]);
+  
+    available_domains.push("hateblo.jp".split(":")[0]);
+  
+    available_domains.push("hatenadiary.com".split(":")[0]);
+  
+    available_domains.push("hatenadiary.jp".split(":")[0]);
+  
+  $('a').on('click', function() {
+    // 同じドメインならスキップ
+    if ( !this.hostname || this.hostname.indexOf(current_domain) != -1 ) return;
+
+    var cross_domain = false;
+    for (var i = 0, len = available_domains.length; i < len; i++) {
+      if (this.hostname.indexOf(available_domains[i]) != -1) cross_domain = true;
+    }
+    if ( cross_domain ) {
+      
+      _gaq.push(['a._link', this.href]);
+      
+      _gaq.push(['b._link', this.href]);
+      
+    }
+  });
+
+})(jQuery);
+</script>
+</body></html>
